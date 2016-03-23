@@ -7,28 +7,27 @@ namespace Rock_Paper_Scissors
 		public static void Main (string[] args)
 		{
 
-			System.Console.WriteLine ("Type 'R' for Rock,");
-			System.Console.WriteLine ("Type 'P' for Paper");
-			System.Console.WriteLine ("Type 'S' for Scissors");
-			System.Console.WriteLine ("Press enter to submit:");
+			Console.WriteLine ("Type 'R' for Rock,");
+			Console.WriteLine ("Type 'P' for Paper");
+			Console.WriteLine ("Type 'S' for Scissors");
+			Console.WriteLine ("Press enter to submit:");
 
-			string userinput = System.Console.ReadLine ();
+			string userinput = Console.ReadLine ();
 
-			if (userinput == "R") {
+			switch (userinput) {
 
-				System.Console.WriteLine ("You chose Rock!");
-
-			} else if (userinput == "P") {
-
-				System.Console.WriteLine ("You chose Paper!");
-
-			} else if (userinput == "S") {
-
-				System.Console.WriteLine ("You chose Scissors!");
-
-			} else {
-
-				System.Console.WriteLine ("What is your problem, son?");
+			case "R":
+				Console.WriteLine ("You chose Rock");
+				break;
+			case "P":
+				Console.WriteLine ("You chose Paper");
+				break;
+			case "S":
+				Console.WriteLine ("You chose Scissors");
+				break;
+			default:
+				Console.WriteLine ("Incorrect Input, please ensure you use uppercase.");
+				break;
 
 			}
 
@@ -43,19 +42,19 @@ namespace Rock_Paper_Scissors
 
 			Random rnd = new Random();
 			int random = rnd.Next (1, 3);
-			//System.Console.WriteLine (random);
 
-			if (random == 1) {
+			switch (random) {
 
-				System.Console.WriteLine ("Computer chose Rock");
-
-			} else if (random == 2) {
-
-				System.Console.WriteLine ("Computer chose Paper");
-
-			} else if (random == 3) {
-
-				System.Console.WriteLine ("Computer chose Scissors");
+			case 1:
+				Console.WriteLine ("Computer chose Rock");
+				break;
+			case 2:
+				Console.WriteLine ("Computer chose Paper");
+				break;
+			case 3:
+				Console.WriteLine ("Computer chose Scissors");
+				break;
+			
 
 			}
 
@@ -71,6 +70,7 @@ namespace Rock_Paper_Scissors
 			} else if ((((random == 1) && (userinput == "P")) || ((random == 2) && (userinput == "S"))) || ((random == 3) && (userinput == "R"))) {
 
 				Win ();
+
 			} else {
 
 				Lose ();
@@ -79,18 +79,18 @@ namespace Rock_Paper_Scissors
 
 		public void Draw() {
 
-			System.Console.WriteLine ("You Drew!");
+			Console.WriteLine ("You Drew!");
 
 		}
 
 		public void Win() {
 
-			System.Console.WriteLine ("You Won!");
+			Console.WriteLine ("You Won!");
 		}
 
 		public void Lose() {
 
-			System.Console.WriteLine ("You Lost!");
+			Console.WriteLine ("You Lost!");
 
 		}
 
