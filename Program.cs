@@ -2,98 +2,110 @@
 
 namespace Rock_Paper_Scissors
 {
-	class MainClass
-	{
-		public static void Main (string[] args)
-		{
+    class MainClass
+    {
+        public static void Main(string[] args)
+        {
 
-			Console.WriteLine ("Type 'R' for Rock,");
-			Console.WriteLine ("Type 'P' for Paper");
-			Console.WriteLine ("Type 'S' for Scissors");
-			Console.WriteLine ("Press enter to submit:");
+            Console.WriteLine("Type 'R' for Rock,");
+            Console.WriteLine("Type 'P' for Paper");
+            Console.WriteLine("Type 'S' for Scissors");
+            Console.WriteLine("Press enter to submit:");
 
-			string userinput = Console.ReadLine ();
+            string userinput = Console.ReadLine();
 
-			switch (userinput) {
+            switch (userinput)
+            {
 
-			case "R":
-				Console.WriteLine ("You chose Rock");
-				break;
-			case "P":
-				Console.WriteLine ("You chose Paper");
-				break;
-			case "S":
-				Console.WriteLine ("You chose Scissors");
-				break;
-			default:
-				Console.WriteLine ("Incorrect Input, please ensure you use uppercase.");
-				break;
+                case "R":
+                    Console.WriteLine("You chose Rock");
+                    break;
+                case "P":
+                    Console.WriteLine("You chose Paper");
+                    break;
+                case "S":
+                    Console.WriteLine("You chose Scissors");
+                    break;
+                default:
+                    Console.WriteLine("Incorrect Input, please ensure you use uppercase.");
+                    break;
 
-			}
+            }
 
-			ComputerChoice MakeDecision = new ComputerChoice ();
-			MakeDecision.RandomChoice (userinput);
-		}
-	}
+            ComputerChoice MakeDecision = new ComputerChoice();
+            MakeDecision.RandomChoice(userinput);
+        }
+    }
 
-	class ComputerChoice {
+    class ComputerChoice
+    {
 
-		public void RandomChoice(string userinput) {
+        public void RandomChoice(string userinput)
+        {
 
-			Random rnd = new Random();
-			int random = rnd.Next (1, 3);
+            Random rnd = new Random();
+            int random = rnd.Next(1, 3);
 
-			switch (random) {
+            switch (random)
+            {
 
-			case 1:
-				Console.WriteLine ("Computer chose Rock");
-				break;
-			case 2:
-				Console.WriteLine ("Computer chose Paper");
-				break;
-			case 3:
-				Console.WriteLine ("Computer chose Scissors");
-				break;
-			
+                case 1:
+                    Console.WriteLine("Computer chose Rock");
+                    break;
+                case 2:
+                    Console.WriteLine("Computer chose Paper");
+                    break;
+                case 3:
+                    Console.WriteLine("Computer chose Scissors");
+                    break;
 
-			}
+            }
 
-			CheckWin (userinput, random);
-		}
+            CheckWin(userinput, random);
+        }
 
-			public void CheckWin(string userinput, int random) {
+        public void CheckWin(string userinput, int random)
+        {
 
-			if ((((random == 1) && (userinput == "R")) || ((random == 2) && (userinput == "P"))) || ((random == 3) && (userinput == "S"))) {
+            if ((((random == 1) && (userinput == "R")) || ((random == 2) && (userinput == "P"))) || ((random == 3) && (userinput == "S")))
+            {
 
-				Draw ();
+                Draw();
 
-			} else if ((((random == 1) && (userinput == "P")) || ((random == 2) && (userinput == "S"))) || ((random == 3) && (userinput == "R"))) {
+            }
+            else if ((((random == 1) && (userinput == "P")) || ((random == 2) && (userinput == "S"))) || ((random == 3) && (userinput == "R")))
+            {
 
-				Win ();
+                Win();
 
-			} else {
+            }
+            else
+            {
 
-				Lose ();
-			}
-		}
+                Lose();
+            }
+        }
 
-		public void Draw() {
+        public void Draw()
+        {
 
-			Console.WriteLine ("You Drew!");
+            Console.WriteLine("You Drew!");
 
-		}
+        }
 
-		public void Win() {
+        public void Win()
+        {
 
-			Console.WriteLine ("You Won!");
-		}
+            Console.WriteLine("You Won!");
+        }
 
-		public void Lose() {
+        public void Lose()
+        {
 
-			Console.WriteLine ("You Lost!");
+            Console.WriteLine("You Lost!");
 
-		}
+        }
 
-	}
+    }
 		
 }
