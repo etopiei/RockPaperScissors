@@ -13,18 +13,22 @@ namespace Rock_Paper_Scissors
             Console.WriteLine("Press enter to submit:");
 
             string userinput = Console.ReadLine();
+            int player1 = 0;
 
             switch (userinput)
             {
 
                 case "R":
                     Console.WriteLine("You chose Rock");
+                    player1 = 1;
                     break;
                 case "P":
                     Console.WriteLine("You chose Paper");
+                    player1 = 2;
                     break;
                 case "S":
                     Console.WriteLine("You chose Scissors");
+                    player1 = 3;
                     break;
                 default:
                     Console.WriteLine("Incorrect Input, please ensure you use uppercase.");
@@ -33,14 +37,14 @@ namespace Rock_Paper_Scissors
             }
 
             ComputerChoice MakeDecision = new ComputerChoice();
-            MakeDecision.RandomChoice(userinput);
+            MakeDecision.RandomChoice(player1);
         }
     }
 
     class ComputerChoice
     {
 
-        public void RandomChoice(string userinput)
+        public void RandomChoice(int player1)
         {
 
             Random rnd = new Random();
@@ -61,29 +65,31 @@ namespace Rock_Paper_Scissors
 
             }
 
-            CheckWin(userinput, random);
+            CheckWin(player1, random);
         }
+            
 
-        public void CheckWin(string userinput, int random)
-        {
+        public void CheckWin(int player1, int opponent) {
 
-            if ((((random == 1) && (userinput == "R")) || ((random == 2) && (userinput == "P"))) || ((random == 3) && (userinput == "S")))
+            if (player1 == opponent)
             {
-
+                
                 Draw();
 
             }
-            else if ((((random == 1) && (userinput == "P")) || ((random == 2) && (userinput == "S"))) || ((random == 3) && (userinput == "R")))
+            else if (((player1 == 1) && (opponent == 3)) || ((player1 == 2) && (opponent == 1)) || ((player1 == 3) && (opponent == 2)))
             {
-
-                Win();
+                
+                Player1Won();
 
             }
             else
             {
 
                 Lose();
+
             }
+
         }
 
         public void Draw()
@@ -93,7 +99,7 @@ namespace Rock_Paper_Scissors
 
         }
 
-        public void Win()
+        public void Player1Won()
         {
 
             Console.WriteLine("You Won!");
