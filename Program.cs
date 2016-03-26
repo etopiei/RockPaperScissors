@@ -2,9 +2,23 @@
 
 namespace Rock_Paper_Scissors
 {
-    class MainClass
+
+    public enum Options {
+        Rock,
+        Paper,
+        Scissors
+    }
+
+    class Game
     {
+
         public static void Main(string[] args)
+        {
+            Game newgame = new Game();
+            newgame.Play();
+
+        }
+        public void Play()
         {
 
             Console.WriteLine("Type 'R' for Rock,");
@@ -13,32 +27,59 @@ namespace Rock_Paper_Scissors
             Console.WriteLine("Press enter to submit:");
 
             string userinput = Console.ReadLine();
-            int player1 = 0;
+            int player1 = (int)Options.Rock;
+            bool noerrors = true;
+
+            ComputerChoice MakeDecision = new ComputerChoice();
 
             switch (userinput)
             {
 
                 case "R":
                     Console.WriteLine("You chose Rock");
-                    player1 = 1;
+                    player1 = (int)Options.Rock;
+                    MakeDecision.RandomChoice(player1);
                     break;
                 case "P":
                     Console.WriteLine("You chose Paper");
-                    player1 = 2;
+                    player1 = (int)Options.Paper;
+                    MakeDecision.RandomChoice(player1);
                     break;
                 case "S":
                     Console.WriteLine("You chose Scissors");
-                    player1 = 3;
+                    player1 = (int)Options.Scissors;
+                    MakeDecision.RandomChoice(player1);
                     break;
                 default:
-                    Console.WriteLine("Incorrect Input, please ensure you use uppercase.");
+                    noerrors = false;
+                    Reset(noerrors);
                     break;
 
             }
-
-            ComputerChoice MakeDecision = new ComputerChoice();
-            MakeDecision.RandomChoice(player1);
+                    
         }
+
+        public void Reset(bool error) 
+        {
+
+            Console.Clear();
+
+            if (error == false)
+            {
+
+                Console.WriteLine("Incorrect Input, please ensure you use uppercase.");
+                Play();
+
+            }
+            else
+            {
+
+                Play();
+
+            }
+
+        }
+
     }
 
     class ComputerChoice
@@ -55,12 +96,15 @@ namespace Rock_Paper_Scissors
 
                 case 1:
                     Console.WriteLine("Computer chose Rock");
+                    random = (int)Options.Rock;
                     break;
                 case 2:
                     Console.WriteLine("Computer chose Paper");
+                    random = (int)Options.Paper;
                     break;
                 case 3:
                     Console.WriteLine("Computer chose Scissors");
+                    random = (int)Options.Scissors;
                     break;
 
             }
@@ -77,7 +121,7 @@ namespace Rock_Paper_Scissors
                 Draw();
 
             }
-            else if (((player1 == 1) && (opponent == 3)) || ((player1 == 2) && (opponent == 1)) || ((player1 == 3) && (opponent == 2)))
+            else if (((player1 == (int)Options.Rock) && (opponent == (int)Options.Scissors)) || ((player1 == (int)Options.Paper) && (opponent == (int)Options.Rock)) || ((player1 == (int)Options.Scissors) && (opponent == (int)Options.Paper)))
             {
                 
                 Player1Won();
@@ -96,6 +140,7 @@ namespace Rock_Paper_Scissors
         {
 
             Console.WriteLine("You Drew!");
+            PlayAgain();
 
         }
 
@@ -103,12 +148,38 @@ namespace Rock_Paper_Scissors
         {
 
             Console.WriteLine("You Won!");
+            PlayAgain();
         }
 
         public void Lose()
         {
 
             Console.WriteLine("You Lost!");
+            PlayAgain();
+
+        }
+
+        public void PlayAgain()
+        {
+            
+            bool playagain = true;
+            Console.WriteLine("Play Again? Enter 'y' for yes, enter 'n' for no...");
+            string getanswer = Console.ReadLine();
+
+            if (getanswer == "y")
+            {
+
+                playagain = true;
+                Game newgame = new Game();
+                newgame.Reset(playagain);
+
+            }
+            else
+            {
+
+                playagain = false;
+
+            }
 
         }
 
